@@ -10,6 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - name: Debug Repository State
+      run: |
+        pwd
+        ls -la
+        git branch -a
+        git remote -v
+      shell: bash
+
     - name: Checkout code
       uses: actions/checkout@v2
 
