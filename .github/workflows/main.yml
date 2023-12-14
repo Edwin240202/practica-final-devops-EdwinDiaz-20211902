@@ -22,7 +22,7 @@ jobs:
     - name: Merge to main
       if: success()
       run: |
-        git checkout main
+        git checkout -b main
         git pull origin main
         git merge --no-ff ${{ github.sha }}
         git push origin main
