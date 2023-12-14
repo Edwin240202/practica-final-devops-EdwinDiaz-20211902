@@ -21,10 +21,12 @@ jobs:
     - name: Run tests
       run: npm test
 
+    - name: Install Surge
+      run: npm install -g surge
+
     - name: Deploy to Surge.sh
       if: success()  
       run: |
-        cd practica-final-devops
         npx surge --domain practica-final-devops.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
     - name: Merge to main
