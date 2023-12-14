@@ -10,31 +10,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GH_TOKEN }}
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GH_TOKEN }}
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Run tests
-        run: npm test
+    - name: Run tests
+      run: npm test
 
-      - name: Install Surge
-        run: npm install -g surge
+    - name: Install Surge
+      run: npm install -g surge
 
-      - name: Deploy to Surge.sh
-        if: success()  
-        run: |
-          surge --project C:/Users/user/Desktop/DANGER/SeptimoCuatrimestre/Electiva2/practica-final-devops --domain practica-final-devops.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+    - name: Deploy to Surge.sh
+      if: success()  
+      run: |
+        surge ./ practica-final-devops.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
-      - name: Merge to main
-        if: success()
-        run: |
-          git fetch
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git checkout -B main origin/main
-          git merge --no-ff ${{ github.sha }} --allow-unrelated-histories
-          git push origin main
+    - name: Merge to main
+      if: success()
+      run: |
+        git fetch
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git checkout -B main origin/main
+        git merge --no-ff ${{ github.sha }} --allow-unrelated-histories
+        git push origin main
