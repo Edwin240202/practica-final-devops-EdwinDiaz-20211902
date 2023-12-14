@@ -27,7 +27,7 @@ jobs:
     - name: Deploy to Surge.sh
       if: success()  
       run: |
-        surge ./ practica-final-devops.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        surge --project ./ --token ${{ secrets.SURGE_TOKEN }} --domain https://practica-final-devops.surge.sh/ 
 
     - name: Merge to main
       if: success()
