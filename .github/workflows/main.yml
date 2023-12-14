@@ -15,19 +15,27 @@ jobs:
       with:
         token: ${{ secrets.GH_TOKEN }}
 
+    - name: Print current directory
+      run: |
+        pwd
+        ls -la
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
     - name: Install dependencies
       run: npm install
 
     - name: Run tests
       run: npm test
 
-    - name: Install Surge
-      run: npm install -g surge
-
     - name: Deploy to Surge.sh
       if: success()  
       run: |
-        npx surge --domain practica-final-devops.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        cd practica-final-devops
+        npx surge --project . --domain practica-final-devops.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
     - name: Merge to main
       if: success()
