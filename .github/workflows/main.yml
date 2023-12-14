@@ -22,9 +22,9 @@ jobs:
       run: npm test
 
     - name: Deploy to Surge.sh
-      if: success()
+      if: success()  
       run: |
-        npx surge --domain practica-final-devops.surge.sh -t ${{ secrets.SURGE_TOKEN }}
+        npx surge --domain practica-final-devops.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
     - name: Merge to main
       if: success()
