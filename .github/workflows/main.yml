@@ -27,7 +27,7 @@ jobs:
     - name: Deploy to Surge.sh
       if: success()  
       run: |
-        surge ./ practica-final-devops.surge.sh --token 78fcaf9233937adc57e9794a17cdd77d
+        surge ./ practica-final-devops.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
     - name: Merge to main
       if: success()
