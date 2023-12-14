@@ -22,7 +22,9 @@ jobs:
     - name: Merge to main
       if: success()
       run: |
-        git checkout main
-        git pull origin main
-        git merge --no-ff ${{ github.sha }}
+        git fetch
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git checkout -B main origin/main
+        git merge --no-ff ${{ github.sha }} --allow-unrelated-histories
         git push origin main
