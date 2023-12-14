@@ -23,6 +23,5 @@ jobs:
       if: success()
       run: |
         git checkout -b main
-        git pull origin main
-        git merge --no-ff ${{ github.sha }}
+        git merge dev
         git push origin main
