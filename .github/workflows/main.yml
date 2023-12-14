@@ -24,7 +24,7 @@ jobs:
     - name: Deploy to Surge.sh
       if: success()  
       run: |
-        cd C:\Users\user\Desktop\DANGER\SeptimoCuatrimestre\Electiva2\practica-final-devops
+        cd practica-final-devops
         npx surge --domain practica-final-devops.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
     - name: Merge to main
